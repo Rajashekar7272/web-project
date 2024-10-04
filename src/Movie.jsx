@@ -225,7 +225,7 @@ const Movies = () => {
 
     return (
         <div className="p-4 bg-gradient-to-r from-black to-gray-800 min-h-screen flex flex-col items-center">
-            <h2 className="text-4xl font-bold mb-6 text-red-500 fade-in animate-pulse">Movie & Series Search</h2>
+            <h2 className="text-4xl font-bold mb-6 text-red-600 fade-in animate-pulse">Movie & Series Search</h2>
             <div className="flex flex-col mb-11 relative w-full max-w-xs mx-auto mt-1">
                 <div className="flex w-full">
                     <input
