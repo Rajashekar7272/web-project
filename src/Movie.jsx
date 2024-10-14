@@ -233,11 +233,11 @@ const Movies = () => {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder={placeholder}
-                        className="border border-black rounded-md p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+                        className="border border-black rounded-md p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-red-600"
                     />
                     <button
                         onClick={handleSearch}
-                        className="bg-yellow-500 text-white p-2 ml-1 rounded-md hover:bg-yellow-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+                        className="bg-red-500 text-white p-2 ml-1 rounded-md hover:bg-red-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-red-600"
                     >
                         Search
                     </button>
@@ -290,7 +290,7 @@ const Movies = () => {
                 {movies.map(movie => (
                     <div
                         className={`flex flex-col border border-gray-400 rounded-lg shadow-lg overflow-hidden 
-                            ${movie.isDC ? 'bg-gradient-to-r from-black to-blue-700' : movie.isMarvel ? 'bg-gradient-to-r from-black to-red-500' : 'bg-gradient-to-r from-black to-purple-500'} 
+                            ${movie.isDC ? 'bg-gradient-to-r from-black to-blue-700' : movie.isMarvel ? 'bg-gradient-to-r from-black to-red-500' : 'bg-gradient-to-r from-gray-900 to-yellow-600'} 
                             transition-transform transform hover:scale-105 cursor-pointer relative w-full`}
                         key={movie.imdbID}
                         onClick={() => window.open(`https://www.imdb.com/title/${movie.imdbID}/`, '_blank')}
