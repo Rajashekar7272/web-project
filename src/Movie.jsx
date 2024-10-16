@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import marvelImage from './assets/Marvels.png';
 import dcImage from './assets/Dc.png';
+import MovieSlider from './MovieSlider';
 
 // Define the API key and base URL
 const API_KEY = 'e89d23eb';
@@ -224,7 +225,7 @@ const Movies = () => {
     };
 
     return (
-        <div className="p-4 bg-gradient-to-r from-black to-gray-800 min-h-screen flex flex-col items-center">
+        <div className="min-h-screen bg-gradient-to-r from-black to-gray-800 flex flex-col items-center overflow-hidden">
             <h2 className="text-4xl font-bold mb-6 text-red-600 fade-in animate-pulse">Movie & Series Search</h2>
             <div className="flex flex-col mb-11 relative w-full max-w-xs mx-auto mt-1">
                 <div className="flex w-full">
@@ -233,7 +234,7 @@ const Movies = () => {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder={placeholder}
-                        className="border border-black rounded-md p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="border-1 border-red-500 text-black font-medium rounded-md p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-red-600"
                     />
                     <button
                         onClick={handleSearch}
@@ -278,6 +279,7 @@ const Movies = () => {
                 </button>
             </div>
 
+            {/* Loading Spinner */}
             {loading && (
                 <div className="flex justify-center items-center">
                     <div className="loader"></div>
@@ -285,7 +287,7 @@ const Movies = () => {
             )}
             {error && <p className="text-red-500 text-center">Error: {error}</p>}
 
-            {/* Results Container */}
+            {/* Movie Results */}
             <div ref={resultsRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {movies.map(movie => (
                     <div
@@ -331,6 +333,13 @@ const Movies = () => {
 
             {/* Loader and Error handling styles */}
             <style>{`
+                body {
+                    margin: 0;
+                    padding: 0;
+                    background-color: #0a0a0a; /* Set a background color matching your design */
+                    color: white; /* Change text color to ensure readability */
+                }
+
                 .loader {
                     border: 8px solid rgba(255, 255, 255, 0.3);
                     border-left: 8px solid white;
@@ -349,17 +358,23 @@ const Movies = () => {
                     0% { opacity: 0; transform: translateY(-20px); }
                     100% { opacity: 1; transform: translateY(0); }
                 }
+
                 .fade-in {
                     animation: fadeIn 1s ease-in-out;
                 }
+
                 @keyframes pulse {
                     0%, 100% { transform: scale(1); }
                     50% { transform: scale(1.05); }
                 }
+
                 .animate-pulse {
                     animation: pulse 1.5s infinite;
                 }
             `}</style>
+
+            {/* MovieSlider Component */}
+            <MovieSlider/>
         </div>
     );
 };
