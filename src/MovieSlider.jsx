@@ -1,40 +1,36 @@
 import React, { useState, useEffect } from 'react';
 
-
 const API_KEY = 'e89d23eb';
 const API_URL = 'https://www.omdbapi.com/';
 
 const MovieSlider = () => {
     const movieTitles = [
         "The Godfather",
-        "Baahubali 2: The Conclusion",
+        "Salaar",
+        "Devara Part 1",
         "Leo",
+        "Vikram",
+        "Kaithi",
         "Manjummel Boys",
-        "K.G.F: Chapter 1",
+        "Minnal Murali",
+        "K.G.F: Chapter 2",
         "Dangal",
         "Interstellar",
-        "godzilla",
+        "The Dark Knight Rises",
         "Titanic",
         "The Wolf of Wall Street",
-        "oppenheimer",
-        "jawan",
+        "Oppenheimer",
+        "Jawan",
+        "Avengers",
+        "Deadpool Wolverine",
+        "Mufasa The Lion King",
     ];
 
     const [movies, setMovies] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
 
-    const moveSlide = (direction) => {
-        const totalCards = movies.length;
-        setCurrentIndex((prevIndex) => {
-            if (direction === 1) {
-                return (prevIndex + 1) % totalCards;
-            } else {
-                return (prevIndex - 1 + totalCards) % totalCards;
-            }
-        });
-    };
-
+    // Fetch movies from the API
     useEffect(() => {
         const fetchMovies = async () => {
             const moviePromises = movieTitles.map(title =>
@@ -48,6 +44,7 @@ const MovieSlider = () => {
         fetchMovies();
     }, []);
 
+    // Handle visibility based on localStorage
     useEffect(() => {
         const searched = localStorage.getItem('searched');
         if (searched) {
@@ -63,38 +60,40 @@ const MovieSlider = () => {
         }
     }, [isVisible]);
 
+    // Auto slide functionality
     useEffect(() => {
         const interval = setInterval(() => {
-            moveSlide(1);
-        }, 2000);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
+        }, 3000); // Change every 3 seconds
 
-        return () => clearInterval(interval);
-    }, [movies]);
+        return () => clearInterval(interval); // Clear interval on unmount
+    }, [movies.length]);
 
     return (
         isVisible && (
             <div className="relative mx-auto p-5 overflow-hidden">
-                <h2 className="text-2xl font-bold mb-4 text-white">Top Movies</h2>
+                <h2 className="font-bold mb-4 text-white animate-scrolling">Search Your Top Movies and Enjoy Watching Your Favourite Movies and Series And Search Seamlessly Which Gives Best Results</h2>
                 <div className="flex transition-transform duration-500 ease-in-out"
                      style={{ transform: `translateX(-${currentIndex * 220}px)` }}>
                     {movies.map((movie, index) => (
-                        <div key={index} className={`flex flex-col items-center justify-center min-w-[200px] m-2 p-4 rounded-lg shadow-lg text-center transition-all duration-300 ${index === currentIndex ? 'bg-gradient-to-r from-black to-pink-600 border-2 border-violet-600' : 'bg-gray-800'}`}>
+                        <div key={index} className={`flex flex-col items-center justify-center min-w-[200px] m-2 transition-all duration-300 ${index === currentIndex ? 'w-[500px]' : 'w-[200px]'} bg-gradient-to-tl from-black to-purple-800 rounded-lg shadow-2xl`}>
                             {movie.Response === "True" ? (
-                                <>
-                                    <img src={movie.Poster} alt={movie.Title} className={`mb-2 h-60 object-contain transition-transform duration-300 ${index === currentIndex ? 'scale-110' : ''}`} />
-                                    <h3 className="font-semibold text-white">{movie.Title}</h3>
-                                    <p className="text-gray-400">{movie.Year}</p>
-                                </>
+                                <div className={`flex ${index === currentIndex ? 'h-80' : 'h-60'}`}>
+                                    <img src={movie.Poster} alt={movie.Title} className={`h-full object-contain rounded-md transition-transform duration-300 ${index === currentIndex ? 'scale-70' : ''}`} />
+                                    {index === currentIndex && (
+                                        <div className="ml-4 text-left h-full">
+                                            <h3 className="font-semibold text-white text-2xl">{movie.Title} ({movie.Year})</h3>
+                                            <p className="text-gray-400">IMDB: {movie.imdbRating}</p>
+                                            <p className="text-white mt-3 font-medium">{movie.Plot}</p>
+                                        </div>
+                                    )}
+                                </div>
                             ) : (
                                 <p className="text-red-500">Movie not found</p>
                             )}
                         </div>
                     ))}
                 </div>
-                <button className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow bg-black"
-                        onClick={() => moveSlide(-1)}>❮</button>
-                <button className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow"
-                        onClick={() => moveSlide(1)}>❯</button>
             </div>
         )
     );

@@ -19,7 +19,7 @@ const marvelMovies = [
     "Iron Man 2",
     "Thor",
     "Captain America: The First Avenger",
-    "Marvel’s The First Avengers",
+    "The Avengers",
     "Iron Man 3",
     "Thor: The Dark World",
     "Captain America: The Winter Soldier",
@@ -48,8 +48,8 @@ const marvelMovies = [
     "Guardians of the Galaxy Vol. 3",
     "The Marvels",
     "Deadpool & Wolverine",
-    "Captain America: New World Order",
-    "Thunderbolts"
+    "Captain America Brave New World",
+    "Thunderbolts*"
 ];
 
 // List of DC movies
@@ -226,7 +226,7 @@ const Movies = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-r from-black to-gray-800 flex flex-col items-center overflow-hidden">
-            <h2 className="text-4xl font-bold mb-6 text-red-600 fade-in animate-pulse">Movie & Series Search</h2>
+            <h2 className="text-4xl font-bold mt-3 mb-6 text-red-600 fade-in animate-pulse">Movie & Series Search</h2>
             <div className="flex flex-col mb-11 relative w-full max-w-xs mx-auto mt-1">
                 <div className="flex w-full">
                     <input
@@ -292,7 +292,7 @@ const Movies = () => {
                 {movies.map(movie => (
                     <div
                         className={`flex flex-col border border-gray-400 rounded-lg shadow-lg overflow-hidden 
-                            ${movie.isDC ? 'bg-gradient-to-r from-black to-blue-700' : movie.isMarvel ? 'bg-gradient-to-r from-black to-red-500' : 'bg-gradient-to-r from-gray-900 to-yellow-600'} 
+                            ${movie.isDC ? 'bg-gradient-to-r from-black to-blue-700' : movie.isMarvel ? 'bg-gradient-to-r from-black to-red-500' : 'bg-gradient-to-r from-gray-900 to-orange-600'} 
                             transition-transform transform hover:scale-105 cursor-pointer relative w-full`}
                         key={movie.imdbID}
                         onClick={() => window.open(`https://www.imdb.com/title/${movie.imdbID}/`, '_blank')}
