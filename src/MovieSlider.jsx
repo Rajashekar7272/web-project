@@ -85,10 +85,10 @@ const MovieSlider = () => {
                     Search Your Top Movies and Enjoy Watching Your Favourite Movies and Series And Search Seamlessly Which Gives Best Results
                 </h2>
                 <div className="flex transition-transform duration-500 ease-in-out"
-                     style={{ transform: `translateX(-${currentIndex * 220 - 350}px)` }}> {/* Adjusted for left margin */}
+                     style={{ transform: `translateX(-${currentIndex * 220 - 320}px)` }}> {/* Adjusted for left margin */}
                     {movies.map((movie, index) => (
-                        <div key={index} className={`flex flex-col items-center justify-center min-w-[200px] m-2 transition-all duration-300 ${index === currentIndex ? 'w-[500px]' : 'w-[200px]'}  rounded-lg shadow-2xl shadow-gray-900 relative border-1 border-gray-800 overflow-hidden`}>
-                            <div className={`absolute inset-0 h-full w-full rounded-lg transition duration-300 transform ${index === currentIndex ? 'animate-pulse' : ''} border-2 border-slate-800 `} />
+                        <div key={index} className={`flex flex-col items-center justify-center min-w-[200px]  m-2 transition-all duration-300 ${index === currentIndex ? 'w-[500px]' : 'w-[200px]'}  rounded-lg shadow-2xl shadow-gray-900 relative border-1 border-slate-800 overflow-hidden`}>
+                            <div className={`absolute inset-0 h-full w-full rounded-lg transition duration-300 transform ${index === currentIndex ? 'animate-pulse' : ''} border-2 border-slate-500 `} />
                             {movie.Response === "True" ? (
                                 <div className={`flex ${index === currentIndex ? 'h-80' : 'h-60'} overflow-hidden`}>
                                     <img src={movie.Poster} alt={movie.Title} className={`h-full object-contain rounded-md transition-transform duration-300 ${index === currentIndex ? 'scale-70' : ''}`} />
@@ -98,7 +98,7 @@ const MovieSlider = () => {
                                             <p className="text-gray-400 font-medium">IMDB: {movie.imdbRating}</p>
                                             <p className='text-gray-400'>Languages: {movie.Language}</p>
                                             <p className='text-gray-400'>Genre: {movie.Genre}</p>
-                                            <p className="text-white mt-3 font-medium overflow-hidden">{truncatePlot(movie.Plot)}</p>
+                                            <p className="text-white mt-3 font-medium font-serif overflow-hidden">{truncatePlot(movie.Plot)}</p>
                                         </div>
                                     )}
                                 </div>
