@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 const API_KEY = 'e89d23eb';
 const API_URL = 'https://www.omdbapi.com/';
 
@@ -26,6 +27,7 @@ const MovieSlider = () => {
         "Avengers",
         "Deadpool Wolverine",
         "Mufasa The Lion King",
+        "saripodhaa sanivaaram",
         "Pushpa: The Rise",
     ];
 
@@ -87,8 +89,8 @@ const MovieSlider = () => {
                 <div className="flex transition-transform duration-500 ease-in-out"
                      style={{ transform: `translateX(-${currentIndex * 220 - 320}px)` }}> {/* Adjusted for left margin */}
                     {movies.map((movie, index) => (
-                        <div key={index} className={`flex flex-col items-center justify-center min-w-[200px]  m-2 transition-all duration-300 ${index === currentIndex ? 'w-[500px]' : 'w-[200px]'}  rounded-lg shadow-2xl shadow-gray-900 relative border-1 border-slate-800 overflow-hidden`}>
-                            <div className={`absolute inset-0 h-full w-full rounded-lg transition duration-300 transform ${index === currentIndex ? 'animate-pulse' : ''} border-2 border-slate-500 `} />
+                        <div key={index} className={`flex flex-col items-center justify-center min-w-[200px]  m-2 transition-all duration-300 ${index === currentIndex ? 'w-[500px]' : 'w-[200px]'}  rounded-lg shadow-xl shadow-black relative overflow-hidden`}>
+                            <div className={`absolute inset-0 h-full w-full rounded-lg transition duration-300 transform ${index === currentIndex ? '' : ''} border-2 border-gray-900`} />
                             {movie.Response === "True" ? (
                                 <div className={`flex ${index === currentIndex ? 'h-80' : 'h-60'} overflow-hidden`}>
                                     <img src={movie.Poster} alt={movie.Title} className={`h-full object-contain rounded-md transition-transform duration-300 ${index === currentIndex ? 'scale-70' : ''}`} />

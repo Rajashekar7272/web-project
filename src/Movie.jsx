@@ -225,7 +225,7 @@ const Movies = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-black to-gray-800 flex flex-col items-center overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-b from-black to-gray-800 flex flex-col items-center overflow-hidden">
             <h2 className="text-4xl font-bold mt-3 mb-6 text-red-600 fade-in animate-pulse">Movies & Series Search</h2>
             <div className="flex flex-col mb-11 relative w-full max-w-xs mx-auto mt-1">
                 <div className="flex w-full">
